@@ -1,0 +1,13 @@
+Functional Expression Cookbook
+
+(1) Identify what your output will be
+	- It will be a primitive or Java Structure (Maps, Lists, etc)
+	- For integers, Long is very common
+
+(2) Start with a Source (File, Collection, etc.)
+
+(3) Identify Your Transformations (intermediate)
+	- apply one at a time
+	- add your filter + lambda expressions
+
+(4) Examine your output
