@@ -12,3 +12,21 @@ Functional Expression Cookbook
 
 (4) Examine your output
 
+Instructions
+
+(1) Stream
+(2) Map / Trim
+(3) Get Rid of Blank
+
+Files.line(new File(fname).toPath())
+
+(A) _______________________
+(B) METHOD      PASS(Lambda)
+    map         s.trim()
+(C) filter      s.isEmpty()
+(D) flatmap     s -> Stream.of((s.split("\\s+")))
+.collect(groupingBy((person p) -> p.getLastName(), count()));
+
+Result: Map Structure
+the 1000
+and 250
