@@ -2,7 +2,8 @@
  * ANNOUNCEMENTS *
  *****************/
 
-+ NEW DUE DATE: 04/06/2016
++ NEW DUE DATE: WED 04/06/2016
++ EXTRA CREDIT: Turn in Assignment by original due date (04/03/2016)
 
 /********************
  * NOTES 03/30/2016 *
@@ -75,3 +76,5 @@ Problem 2 - How many of my contacts live in Enfield, CT
 long localContacts = team.Stream().
 
 Problem 3 - Identify the most frequent words Lincoln used.
+
+team.Stream().filter(~).map().distinct()

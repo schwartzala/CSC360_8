@@ -4,7 +4,8 @@ package functional;
  * the data needed to be stored about a person
  */
 
-public class Person implements Comparable{
+public class Person implements Comparable<Person>{
+//public class Person {
 
     private int    personId;
     private String firstName;
@@ -32,13 +33,13 @@ public class Person implements Comparable{
      *  @param lastName it receives a last name
      *  @param birthDate it receives a birth date
      *  @return it returns no data*/
-    public Person(int personId, String fname, String lname, String bdate) {
+    public Person(int personId, String fname, String lname, String bdate, String phoneNum, String faxNum) {
         this.personId = personId;
         this.firstName = fname;
         this.lastName = lname;
         this.birthDate = bdate;
-        this.phoneNum = "";
-        this.faxNum = "";
+        this.phoneNum = phoneNum;
+        this.faxNum = faxNum;
     }
     /** This method returns the person's id number
      *  @param it receives no input
@@ -124,21 +125,49 @@ public class Person implements Comparable{
      *  @returns 0, if the the two are equal
      *   returns -1, if the passed is greater
      *   returns 1, if the passed is less*/
-    public int compareTo(Object person) {
+    public int compareTo(Person person) {
 
 
         if (this == person)
             return 0;
 
-        Person tempPerson = (Person) person;
-
-        if (this.personId == tempPerson.personId)
+        if (this.personId == person.personId)
             return 0;
-        else if (this.personId > tempPerson.personId)
+        else if (this.personId > person.personId)
             return 1;
         else
             return -1;
 
     }
 
+    /** This method checks if this objct equlas another one.
+     *  @param a person object
+     *  @returns 0, if the the two are equal
+     *   returns -1, if the passed is greater
+     *   returns 1, if the passed is less*/
+    public boolean equals(Object other) {
+
+        if (this == other)
+            return true;
+
+        if (other == null)
+            return false;
+
+        if (getClass() != other.getClass())
+            return false;
+
+        Person tempPerson = (Person) other;
+
+        if (this.personId == tempPerson.personId
+                && this.firstName.equals(tempPerson.getFirstName())
+                && this.lastName.equals(tempPerson.getLastName())
+                && this.phoneNum.equals(tempPerson.getPhoneNum())
+                && this.faxNum.equals(tempPerson.getFaxNum()) )
+
+            return true;
+        else
+
+            return false;
+
+    }
 }
