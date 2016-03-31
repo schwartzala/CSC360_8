@@ -1,3 +1,13 @@
+/*****************
+ * ANNOUNCEMENTS *
+ *****************/
+
++ NEW DUE DATE: 04/06/2016
+
+/********************
+ * NOTES 03/30/2016 *
+ ********************/
+
 Functional Expression Cookbook
 
 (1) Identify what your output will be
@@ -30,3 +40,38 @@ Files.line(new File(fname).toPath())
 Result: Map Structure
 the 1000
 and 250
+
+/********************
+ * NOTES 03/31/2016 *
+ ********************/
+
+Functional expression =
+(1) Source that is converted to a Stream object.
+(2) Stream method calls that "massage" the data.
+(3) Logic that gets passed to the method calls w/ the "massaging" rules.
+(4) Some generated output -> The 'WHAT' we were looking for.
+                     v
+               java data type -> Primitive or Data Structure
+
+Functional Expression Cookbook VER. 2
+
+(1) Read and understand your problem as a series of cuntional steps
+
+(2) Identify data type of Result
+	- It will be a primitive or Java Structure (Maps, Lists, etc)
+	- For integers, Long is very common
+
+(3) Identify Source and turn it into a Stream
+
+(4) Which Stream methods can perform functional steps?
+
+(5) What logic needs to be passed those methods
+    - lambda expression and method reference
+
+Problem 1 - How many contacts do I have?
+long contactCount = team.Stream().count();
+
+Problem 2 - How many of my contacts live in Enfield, CT
+long localContacts = team.Stream().
+
+Problem 3 - Identify the most frequent words Lincoln used.
