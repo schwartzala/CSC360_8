@@ -54,7 +54,7 @@ public class LambdaTester {
     /* AUTHOR: Alan Schwartz */
         /* START Lab 8 Exercise 1 */
         ArrayList<Person> contacts = new ArrayList<>();
-        File inFile = new File("data/Person-Contacts.txt");
+        File inFile = new File("data\\Persons-Contacts.txt");
         Scanner in = new Scanner(inFile);
         while (in.hasNext())
         {
@@ -67,8 +67,17 @@ public class LambdaTester {
 
 //		      Lab 8 Exercise 2
         displayFirstNameofOLastNames(team);
+
+    /* AUTHOR: Alan Schwartz */
+        /* START Lab 8 Exercise 2 */
+
+        displayFirstNameofOLastNames(contacts);
+
+        /* END Lab 8 Exercise 2 */
+
 //		      Wordcount on Shakespeare's Poems
         processShakespearesPoems(args[0]);
+
     }
 
     /**  Count all People with Roland as a first name
@@ -92,9 +101,17 @@ public class LambdaTester {
      */
 	public static void displayFirstNameofOLastNames(ArrayList<Person> team){
 
+    /* AUTHOR: Alan Schwartz */
+        /* START displayFirstNameofOLastNames */
 
-	/*  put yuor code here       */
+        long oCount = 0;
 
+        oCount = team.stream().filter(p -> p.getLastName().toUpperCase().contains("O")).count();
+
+        System.out.println("Last Names with \"O\": " + oCount);
+
+
+        /* END displayFirstNameofOLastNames */
 	}
 
     /**
@@ -102,25 +119,25 @@ public class LambdaTester {
      */
     public static void processShakespearesPoems(String fname) throws IOException {
 
-
-
+/**
+ *         Count all words that start with "A" in Lincoln speech
+ */
         Map<String, Long> wordsCount = null;
+        try
+        {
 
-        try {
             wordsCount = Files.lines(new File(fname).toPath())
-            .map(s -> s.trim())
-            .filter(s -> !s.isEmpty())
-            .flatMap(s -> Stream.of(s.split("\\s+")))
-            .map(s -> s.toUpperCase())
-            .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+                    .map(s -> s.trim())
+                    .filter(s -> !s.isEmpty())
+                    .flatMap(s -> Stream.of(s.split("\\s+")))
+                    .map(s -> s.toUpperCase())
+                    .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
 
-           	   /* uncomment wordcount and add your code */
+            System.out.println(wordsCount);
 
-//            	wordsCount = 		       		  
 
-        } catch (Exception e) {
-            System.err.println("IO Error" + e.getMessage());
         }
+        catch (Exception e) {System.err.println("IO Error" + e.getMessage());}
        
               /*  add code below to print out all wordcount wordcount words with counts > 300  
                *  Do his by turning wordcount into a stream, sort it by value 
