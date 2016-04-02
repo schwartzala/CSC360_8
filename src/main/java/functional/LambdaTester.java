@@ -2,17 +2,10 @@ package functional;
 
 import java.awt.datatransfer.DataFlavor;
 import java.text.ParseException;
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.*;
@@ -76,7 +69,7 @@ public class LambdaTester {
         /* END Lab 8 Exercise 2 */
 
 //		      Wordcount on Shakespeare's Poems
-        processShakespearesPoems(args[0]);
+        processShakespearesPoems("data/poems.txt");
 
     }
 
@@ -119,30 +112,25 @@ public class LambdaTester {
      */
     public static void processShakespearesPoems(String fname) throws IOException {
 
-/**
- *         Count all words that start with "A" in Lincoln speech
- */
         Map<String, Long> wordsCount = null;
+
         try
         {
-
             wordsCount = Files.lines(new File(fname).toPath())
                     .map(s -> s.trim())
-                    .filter(s -> !s.isEmpty())
                     .flatMap(s -> Stream.of(s.split("\\s+")))
+                    .map(s -> s.replaceAll("\\W+", ""))
                     .map(s -> s.toUpperCase())
+                    .filter(s -> !s.isEmpty())
                     .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
-
-            System.out.println(wordsCount);
-
-
         }
         catch (Exception e) {System.err.println("IO Error" + e.getMessage());}
-       
-              /*  add code below to print out all wordcount wordcount words with counts > 300  
-               *  Do his by turning wordcount into a stream, sort it by value 
-               *  then has a forEach */
 
+        Iterator iter = wordsCount.entrySet().iterator();
+        for (int i = 0; i < 10; i++) {
+            if (iter.hasNext()) {
+                System.out.println(iter.next());
+            }
+        }
     }
-
 }
