@@ -99,7 +99,7 @@ public class LambdaTester {
         /* START displayFirstNameofOLastNames */
 
         team.stream().filter(p -> p.getLastName().toUpperCase().contains("O"))
-                .map(p -> p.getFirstName())
+                .map(Person::getFirstName)
                 .distinct()
                 .forEach(System.out::println);
 
