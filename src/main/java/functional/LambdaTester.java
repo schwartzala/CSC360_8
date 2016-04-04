@@ -42,7 +42,6 @@ public class LambdaTester {
          *  Comment out method call to execute.
          */
 //		      Lab 8 Exercise 1
-        countDavids(team); // Example for Testing
 
     /* AUTHOR: Alan Schwartz */
         /* START Lab 8 Exercise 1 */
@@ -56,15 +55,17 @@ public class LambdaTester {
         }
         in.close();
         countDavids(contacts);
+        System.out.println();
+
         /* END Lab 8 Exercise 1 */
 
 //		      Lab 8 Exercise 2
-        displayFirstNameofOLastNames(team);
 
     /* AUTHOR: Alan Schwartz */
         /* START Lab 8 Exercise 2 */
 
         displayFirstNameofOLastNames(contacts);
+        System.out.println();
 
         /* END Lab 8 Exercise 2 */
 
@@ -97,12 +98,10 @@ public class LambdaTester {
     /* AUTHOR: Alan Schwartz */
         /* START displayFirstNameofOLastNames */
 
-        long oCount = 0;
-
-        oCount = team.stream().filter(p -> p.getLastName().toUpperCase().contains("O")).count();
-
-        System.out.println("Last Names with \"O\": " + oCount);
-
+        team.stream().filter(p -> p.getLastName().toUpperCase().contains("O"))
+                .map(p -> p.getFirstName())
+                .distinct()
+                .forEach(System.out::println);
 
         /* END displayFirstNameofOLastNames */
 	}
@@ -117,10 +116,8 @@ public class LambdaTester {
         try
         {
             wordsCount = Files.lines(new File(fname).toPath())
-                    .map(s -> s.trim())
                     .flatMap(s -> Stream.of(s.split("\\s+")))
-                    .map(s -> s.replaceAll("\\W+", ""))
-                    .map(s -> s.toUpperCase())
+                    .map(s -> s.toUpperCase().replaceAll("\\W+", "").trim())
                     .filter(s -> !s.isEmpty())
                     .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
         }
